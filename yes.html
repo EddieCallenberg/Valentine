@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>YAY 🎉</title>
   <style>
     body {
@@ -13,14 +14,20 @@
       align-items: center;
       height: 100vh;
       font-family: sans-serif;
+      padding: 16px;
+      box-sizing: border-box;
     }
 
     h1 {
       z-index: 10;
       background: white;
-      padding: 30px 50px;
+      padding: 18px 20px;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,.2);
+      text-align: center;
+      max-width: min(92vw, 600px);
+      font-size: clamp(1.2rem, 5vw, 2.2rem);
+      margin: 0;
     }
 
     canvas {
@@ -38,8 +45,13 @@
 <script>
 const canvas = document.getElementById("confetti");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
 
 const confetti = [];
 for (let i = 0; i < 200; i++) {
@@ -66,7 +78,10 @@ function draw() {
 function update() {
   confetti.forEach(c => {
     c.y += c.d * 0.3;
-    if (c.y > canvas.height) c.y = -10;
+    if (c.y > canvas.height) {
+      c.y = -10;
+      c.x = Math.random() * canvas.width;
+    }
   });
 }
 

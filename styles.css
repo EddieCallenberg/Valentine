@@ -12,17 +12,14 @@ body {
   font-size: 3rem;
 }
 
-.sneaky-no:hover {
-  opacity: 0;
-  cursor: pointer;
+.sneaky-no {
+  transition: opacity 0.2s ease;
+  width: 75px;
 }
 
 .sneaky-no:hover {
   opacity: 0;
-}
-.sneaky-no {
-  transition: opacity 0.2s ease;
-  width: 75px;
+  cursor: pointer;
 }
 
 .yes-btn {
@@ -52,3 +49,25 @@ body {
   100% { transform: scale(2) rotate(0deg); }
 }
 
+@media (max-width: 576px) {
+  .valentine-card {
+    padding: 1.25rem !important;
+  }
+
+  .valentine-card h1 {
+    font-size: 1.6rem;
+  }
+
+  .valentine-card p {
+    font-size: 1rem;
+  }
+
+  .btn-wrapper .btn {
+    width: 100%;
+  }
+
+  .yes-btn,
+  .sneaky-no {
+    width: 100%;
+  }
+}
