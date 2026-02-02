@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YAY 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #ffe6f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+
+    h1 {
+      z-index: 10;
+      background: white;
+      padding: 30px 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="confetti"></canvas>
+<h1>Yaaaaaay!! Du är bäst jag älskar dig mest av allt!! 💖</h1>
+
+<script>
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const confetti = [];
+for (let i = 0; i < 200; i++) {
+  confetti.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 6 + 4,
+    d: Math.random() * 10 + 5,
+    color: `hsl(${Math.random()*360},100%,50%)`
+  });
+}
+
+function draw() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  confetti.forEach(c => {
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+    ctx.fillStyle = c.color;
+    ctx.fill();
+  });
+  update();
+}
+
+function update() {
+  confetti.forEach(c => {
+    c.y += c.d * 0.3;
+    if (c.y > canvas.height) c.y = -10;
+  });
+}
+
+setInterval(draw, 16);
+</script>
+
+</body>
+</html>
